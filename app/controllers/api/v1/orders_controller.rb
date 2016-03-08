@@ -5,10 +5,11 @@ class Api::V1::OrdersController < ApplicationController
   end
   
   def show
-    if Order.exists?(params[:id])
-        @order = Order.find(params[:id])
+    @id = params[:id]
+    if Order.exists?(@id)
+        @order = Order.find(@id)
     else
-      @order = Order.new(id: params[:id], status: "Invalid order number")
+      @order = Order.new(id: @id, status: "Invalid order number")
     end
   end
 
